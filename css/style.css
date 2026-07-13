@@ -1,0 +1,667 @@
+/* ================================
+   Mobile-First Landing Page Styles
+   ================================ */
+
+/* Root Variables */
+:root {
+    --primary-color: #1B413F;
+    --accent-color: #7ADD22;
+    --secondary-color: #566C2D;
+    --success-color: #A4E69E;
+    --danger-color: #dc3545;
+    --warning-color: #7ADD22;
+    --light-bg: #f8f9fa;
+    --dark-bg: #1B413F;
+    --text-dark: #1B413F;
+    --text-muted: #566C2D;
+}
+
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Utility Classes */
+.bg-gradient {
+    background: linear-gradient(135deg, #1B413F 0%, #566C2D 50%, #7ADD22 100%);
+}
+
+.text-white-75 {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.min-vh-100 {
+    min-height: 100vh;
+}
+
+.py-6 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.py-md-6 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+.py-md-7 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* ================================
+   Navigation
+   ================================ */
+
+.navbar {
+    padding: 1rem 0;
+    background: linear-gradient(90deg, #1B413F 0%, #2d6666 100%) !important;
+    box-shadow: 0 2px 8px rgba(27, 65, 63, 0.1);
+}
+
+.navbar-brand {
+    color: var(--accent-color) !important;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.navbar-brand i {
+    margin-right: 0.5rem;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 500;
+    margin: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--accent-color) !important;
+}
+
+/* ================================
+   Hero Section
+   ================================ */
+
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section h1 {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    animation: fadeInDown 0.8s ease;
+}
+
+.hero-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.search-container {
+    animation: fadeInUp 0.8s ease 0.4s both;
+}
+
+.search-container .input-group {
+    background: white;
+    border-radius: 10px;
+}
+
+.search-container .form-control {
+    border: none;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+.search-container .form-control::placeholder {
+    color: var(--text-muted);
+}
+
+.search-container .btn {
+    border: none;
+    padding: 0.75rem 1.5rem;
+
+}
+
+.hero-section .btn {
+    animation: fadeInUp 0.8s ease 0.6s both;
+    
+}
+
+/* Hero Decorations */
+.hero-decor {
+    position: absolute;
+    inset: 0; /* top:0; right:0; bottom:0; left:0; */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-food {
+    position: absolute;
+    display: inline-block;
+    font-size: 2.25rem;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.18));
+    transform-origin: center;
+    animation: floatUp 6s ease-in-out infinite;
+    opacity: 0.95;
+}
+
+.floating-food:nth-child(1) { left: 8%; top: 55%; animation-duration: 6.5s; }
+.floating-food:nth-child(2) { left: 22%; top: 70%; animation-duration: 7.2s; transform: scale(0.95); }
+.floating-food:nth-child(3) { right: 18%; top: 48%; animation-duration: 5.8s; }
+.floating-food:nth-child(4) { left: 50%; top: 62%; animation-duration: 6.8s; transform: scale(1.05); }
+.floating-food:nth-child(5) { right: 8%; top: 72%; animation-duration: 7.4s; }
+.floating-food:nth-child(6) { left: 72%; top: 50%; animation-duration: 6.1s; transform: scale(0.9); }
+
+.hero-wave {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 90px;
+    pointer-events: none;
+    transform: translateZ(0);
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(-6deg); }
+    25% { transform: translateY(-12px) rotate(4deg); }
+    50% { transform: translateY(-6px) rotate(-2deg); }
+    75% { transform: translateY(-14px) rotate(6deg); }
+    100% { transform: translateY(0) rotate(-6deg); }
+}
+
+/* subtle pulse on CTAs to draw attention */
+.hero-section .btn-primary {
+    box-shadow: 0 8px 24px rgba(11,34,32,0.18);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hero-section .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px rgba(11,34,32,0.22);
+}
+
+/* ================================
+   Featured Recommendations
+   ================================ */
+
+#recommendations {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    background-color: #f0f5f0 !important;
+}
+
+#recommendations h2 {
+    color: var(--text-dark);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.food-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.food-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15) !important;
+}
+
+.food-image {
+    overflow: hidden;
+    position: relative;
+}
+
+.food-image img {
+    transition: transform 0.3s ease;
+}
+
+.food-card:hover .food-image img {
+    transform: scale(1.05);
+}
+
+.food-card .card-title {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+}
+
+.food-card .badge {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.food-card .fa-heart {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.food-card .fa-heart:hover {
+    transform: scale(1.2);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 3rem;
+    height: 3rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.carousel-control-prev {
+    left: -5px;
+}
+
+.carousel-control-next {
+    right: -5px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* ================================
+   How It Works Section
+   ================================ */
+
+#how-it-works {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#how-it-works h2 {
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.feature-icon {
+    transition: all 0.3s ease;
+}
+
+.feature-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
+}
+
+#how-it-works h5 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+#how-it-works p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* ================================
+   Features Highlights Section
+   ================================ */
+
+#features {
+    background-color: #f0f5f0 !important;
+}
+
+#features h2 {
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+#features h5 {
+    font-size: 1.1rem;
+    color: var(--text-dark);
+}
+
+#features p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+#features i {
+    transition: all 0.3s ease;
+}
+
+#features .d-flex:hover i {
+    transform: translateX(5px);
+}
+
+/* ================================
+   Testimonials Section
+   ================================ */
+
+#testimonials {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#testimonials h2 {
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.testimonial-card {
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    background-color: #f8faf7 !important;
+    border: 1px solid #e8ede5 !important;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(27, 65, 63, 0.08) !important;
+    border-color: #d0dcc8 !important;
+}
+
+.testimonial-card .card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #3a3a3a;
+}
+
+.testimonial-card h6 {
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.testimonial-card small {
+    font-size: 0.8rem;
+    color: #888;
+}
+
+.avatar {
+    font-weight: 700;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+/* ================================
+   CTA Section
+   ================================ */
+
+#download {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+#download h2 {
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#download p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+#download .btn-light {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#download .btn-light:hover {
+    background: white;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   Footer
+   ================================ */
+
+footer {
+    margin-top: 3rem;
+    background-color: var(--primary-color) !important;
+}
+
+footer h6 {
+    color: white;
+    font-weight: 700;
+}
+
+footer .text-muted {
+    color: #adb5bd !important;
+    font-size: 0.9rem;
+}
+
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--accent-color) !important;
+}
+
+footer hr {
+    margin: 2rem 0;
+    opacity: 0.2;
+    border-color: var(--accent-color) !important;
+}
+
+/* ================================
+   Animations
+   ================================ */
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   Responsive Design
+   ================================ */
+
+/* Tablets (768px and up) */
+@media (min-width: 768px) {
+    .hero-section h1 {
+        font-size: 3.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+    }
+
+    .py-md-6 {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    .py-md-7 {
+        padding-top: 5rem !important;
+        padding-bottom: 5rem !important;
+    }
+
+    #how-it-works,
+    #features,
+    #testimonials {
+        padding-top: 4rem !important;
+        padding-bottom: 4rem !important;
+    }
+
+    .food-card {
+        margin-bottom: 0;
+    }
+}
+
+/* Desktop (992px and up) */
+@media (min-width: 992px) {
+    .hero-section h1 {
+        font-size: 4rem;
+    }
+
+    .navbar-nav {
+        gap: 2rem;
+    }
+
+    .search-container .form-control {
+        font-size: 1.1rem;
+    }
+}
+
+/* Extra Large (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* Large Mobile (480px) */
+@media (min-width: 480px) {
+    .hero-section h1 {
+        font-size: 2.75rem;
+    }
+
+    .search-container {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ================================
+   Button & Badge Overrides
+   ================================ */
+
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.btn-outline-light:hover {
+    background-color: var(--accent-color) !important;
+    border-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.badge.bg-success {
+    background-color: var(--success-color) !important;
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.badge.bg-info {
+    background-color: var(--secondary-color) !important;
+    color: white !important;
+}
+
+.badge.bg-warning {
+    background-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+.badge.bg-danger {
+    background-color: var(--accent-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.feature-icon {
+    background-color: var(--primary-color) !important;
+}
+
+.feature-icon:hover {
+    background-color: var(--secondary-color) !important;
+    box-shadow: 0 10px 20px rgba(27, 65, 63, 0.3);
+}
+
+/* ================================
+   Accessibility
+   ================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ================================
+   Dark Mode Support
+   ================================ */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--dark-bg);
+        color: #f8f9fa;
+    }
+
+    .food-card,
+    .testimonial-card {
+        background-color: #0a1c01 !important;
+        color: #f8f9fa;
+    }
+
+    .food-card .card-title,
+    .testimonial-card h6 {
+        color: #f8f9fa;
+    }
+
+    .text-muted {
+        color: #adb5bd !important;
+    }
+}
+
+/* ================================
+   Print Styles
+   ================================ */
+
+@media print {
+    .navbar,
+    .carousel-control-prev,
+    .carousel-control-next,
+    #download,
+    footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+    }
+}

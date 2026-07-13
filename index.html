@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TasteMatch - Food Recommendations Made Easy</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container-fluid px-3 px-md-4">
+            <a class="navbar-brand fw-bold fs-5" href="#home">
+                <i class="fas fa-utensils"></i> TasteMatch
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#how-it-works">How It Works</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section py-5 py-md-7 bg-gradient text-center text-white">
+        <div class="container px-3">
+            <div class="row align-items-center justify-content-center min-vh-100">
+                <div class="col-12 col-md-10 col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Find Your Perfect Meal</h1>
+                    <p class="fs-5 mb-5 text-white-75">Discover delicious food recommendations tailored to your taste. Tired of deciding what to eat? Let TasteMatch choose for you.</p>
+                    
+                    <!-- Search Bar -->
+                    <div class="search-container mb-5">
+                        <div class="input-group input-group-lg shadow-sm">
+                            <input type="text" class="form-control rounded-start" placeholder="Enter ingredients (e.g., chicken, tomato, garlic)..." id="searchInput">
+                            <button class="btn btn-primary" type="button" id="searchBtn">
+                                <i class="fas fa-search"></i> Find Recipes
+                            </button>
+                        </div>
+                        <small class="text-white-75 d-block mt-2">Separate multiple ingredients with commas</small>
+                    </div>
+
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                        <a href="#download" class="btn btn-primary btn-lg px-5">Get Started</a>
+                        <a href="#how-it-works" class="btn btn-outline-light btn-lg px-5">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero Decorations: floating food icons + wave -->
+        <div class="hero-decor" aria-hidden="true">
+            <span class="floating-food" data-speed="0.9">🍕</span>
+            <span class="floating-food" data-speed="1.1">🍔</span>
+            <span class="floating-food" data-speed="0.7">🍣</span>
+            <span class="floating-food" data-speed="1.3">🥗</span>
+            <span class="floating-food" data-speed="0.85">🍜</span>
+            <span class="floating-food" data-speed="1.05">🍩</span>
+        </div>
+
+        <svg class="hero-wave" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 C150,100 350,100 600,50 C850,0 1050,30 1200,80 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.12)"></path>
+        </svg>
+    </section>
+
+    <!-- Featured Recommendations Carousel -->
+    <section id="recommendations" class="py-5 py-md-6 bg-light">
+        <div class="container px-3">
+            <h2 class="text-center fw-bold mb-4 fs-3">Featured Recommendations</h2>
+            <p class="text-center text-muted mb-5" id="recipeStatus">Enter ingredients above to find delicious recipes</p>
+
+            <div id="loadingSpinner" class="text-center" style="display: none;">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2 text-muted">Finding recipes for you...</p>
+            </div>
+
+            <div id="recipesContainer" class="row g-3">
+                <!-- Dynamically populated recipes -->
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="food-card card h-100 border-0 shadow-sm">
+                        <div class="food-image bg-secondary" style="height: 200px;">
+                            <img src="https://via.placeholder.com/300x200?text=Pasta+Carbonara" class="card-img-top h-100 w-100" alt="Pasta Carbonara" style="object-fit: cover;">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Pasta Carbonara</h5>
+                            <p class="card-text text-muted text-truncate">Classic Italian pasta with creamy sauce</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-warning text-dark">Italian</span>
+                                <i class="fas fa-heart text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="food-card card h-100 border-0 shadow-sm">
+                        <div class="food-image bg-secondary" style="height: 200px;">
+                            <img src="https://via.placeholder.com/300x200?text=Sushi+Platter" class="card-img-top h-100 w-100" alt="Sushi Platter" style="object-fit: cover;">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Sushi Platter</h5>
+                            <p class="card-text text-muted text-truncate">Fresh assorted sushi rolls</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-info">Japanese</span>
+                                <i class="fas fa-heart text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="food-card card h-100 border-0 shadow-sm">
+                        <div class="food-image bg-secondary" style="height: 200px;">
+                            <img src="https://via.placeholder.com/300x200?text=Thai+Curry" class="card-img-top h-100 w-100" alt="Thai Curry" style="object-fit: cover;">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">Thai Green Curry</h5>
+                            <p class="card-text text-muted text-truncate">Spicy and aromatic green curry</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="badge bg-success">Thai</span>
+                                <i class="fas fa-heart text-danger"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="errorMessage" class="alert alert-warning mt-4" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i> <span id="errorText"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-5 py-md-6">
+        <div class="container px-3">
+            <h2 class="text-center fw-bold mb-5 fs-3">How It Works</h2>
+            <div class="row g-4 g-md-5">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="text-center">
+                        <div class="feature-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Create Profile</h5>
+                        <p class="text-muted">Tell us your food preferences and dietary restrictions</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="text-center">
+                        <div class="feature-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-filter"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Set Filters</h5>
+                        <p class="text-muted">Choose cuisine types, dietary needs, and cooking time</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="text-center">
+                        <div class="feature-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Get Recommendations</h5>
+                        <p class="text-muted">Our AI suggests perfect meals just for you</p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="text-center">
+                        <div class="feature-icon bg-primary text-white rounded-circle d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px; font-size: 2rem;">
+                            <i class="fas fa-map-pin"></i>
+                        </div>
+                        <h5 class="fw-bold mb-2">Find & Enjoy</h5>
+                        <p class="text-muted">Locate nearby restaurants and make reservations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Highlights Section -->
+    <section id="features" class="py-5 py-md-6 bg-light">
+        <div class="container px-3">
+            <h2 class="text-center fw-bold mb-5 fs-3">Why Choose TasteMatch?</h2>
+            <div class="row g-4 g-md-5">
+                <div class="col-12 col-md-6">
+                    <div class="d-flex gap-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-brain text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">AI-Powered</h5>
+                            <p class="text-muted">Smart algorithms learn your taste preferences over time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="d-flex gap-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-bolt text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Quick & Easy</h5>
+                            <p class="text-muted">Get personalized recommendations in seconds</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="d-flex gap-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-fork-knife text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Wide Selection</h5>
+                            <p class="text-muted">From local cafes to fine dining restaurants</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="d-flex gap-3">
+                        <div class="flex-shrink-0">
+                            <i class="fas fa-star text-primary fs-4"></i>
+                        </div>
+                        <div>
+                            <h5 class="fw-bold mb-2">Highly Rated</h5>
+                            <p class="text-muted">See ratings and reviews from real diners</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5 py-md-6">
+        <div class="container px-3">
+            <h2 class="text-center fw-bold mb-5 fs-3">What Users Say</h2>
+            <div class="row g-4 g-md-5">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="testimonial-card card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text mb-3">"TasteMatch has completely changed how I decide what to eat. No more endless scrolling!"</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="avatar bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #1B413F !important;">
+                                    JD
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">John Doe</h6>
+                                    <small class="text-muted">Food Enthusiast</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="testimonial-card card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text mb-3">"The recommendations are spot on! I discovered my new favorite restaurant through this app."</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="avatar bg-success text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #A4E69E !important; color: #1B413F !important;">
+                                    SM
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Sarah Miller</h6>
+                                    <small class="text-muted">Foodie</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="testimonial-card card border-0 shadow-sm h-100">
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                                <i class="fas fa-star text-warning"></i>
+                            </div>
+                            <p class="card-text mb-3">"As someone with dietary restrictions, this app makes eating out so much easier!"</p>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="avatar bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; background-color: #7ADD22 !important; color: #1B413F !important;">
+                                    MJ
+                                </div>
+                                <div>
+                                    <h6 class="fw-bold mb-0">Mike Johnson</h6>
+                                    <small class="text-muted">Health Conscious</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4">
+        <div class="container px-3">
+            <div class="row g-4 mb-4">
+                <div class="col-12 col-md-3">
+                    <h6 class="fw-bold mb-3">TasteMatch</h6>
+                    <p class="text-muted small">Find your perfect meal with AI-powered recommendations.</p>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h6 class="fw-bold mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-muted text-decoration-none">About Us</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Features</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h6 class="fw-bold mb-3">Legal</h6>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-muted text-decoration-none">Privacy Policy</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Terms of Service</a></li>
+                        <li><a href="#" class="text-muted text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h6 class="fw-bold mb-3">Follow Us</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-light text-decoration-none"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light text-decoration-none"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light text-decoration-none"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-muted">
+            <p class="text-center text-muted small mb-0">&copy; 2024 TasteMatch. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP8IoJUtNAqn6byScZ8jBtJ6XoPoDfsW9-n" crossorigin="anonymous"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
